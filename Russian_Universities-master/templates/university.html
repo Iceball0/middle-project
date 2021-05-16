@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>{{ university.name }}</title>
+
+    <!--Meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="Description" content="Основная информация об институте {{ university.name }}">
+    
+    <!--Links-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal_style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header_style.css') }}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/university_specialty_style.css') }}"/>
+    
+    <!--Scripts-->
+    <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/university_specialty_script.js') }}"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>    
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=27ace950-1af8-429c-8bbe-50b36c0383cd" type="text/javascript"></script>
+    <script type="module">
+        import { menuController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+        import { modalController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+        window.menuController = menuController;
+        window.modalController = modalController;
+    </script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("map", {
+                center: ['{{ coordinates[1] }}', '{{ coordinates[0] }}'],
+                zoom: 15
+            });
+            myMap.geoObjects
+                .add(new ymaps.Placemark(['{{ coordinates[1] }}', '{{ coordinates[0] }}'], {
+                    balloonContent: '{{ university.name }}'
+                }, {
+                    preset: 'islands#icon',
+                    iconColor: '#0095b6'
+                }))
+        };
+    </script>
+
+    <!--Icons-->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo128.png') }}" sizes="128x128">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo64.png') }}" sizes="64x64">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo32.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo16.png') }}" sizes="16x16">
+    <link rel="icon" type="img/png" sizes="128x128" href="{{ url_for('static', filename='images/logos/logo128.png') }}">
+    <link rel="icon" type="img/png" sizes="64x64" href="{{ url_for('static', filename='images/logos/logo64.png') }}">
+    <link rel="icon" type="img/png" sizes="32x32" href="{{ url_for('static', filename='images/logos/logo32.png') }}">
+    <link rel="icon" type="img/png" sizes="16x16" href="{{ url_for('static', filename='images/logos/logo16.png') }}">
+</head>
+<body>
+    <ion-app mode="md">
+        <ion-header>
+            <ion-toolbar style="padding-top: 0;"  class="header-toolbar">
+                <ion-row class="ion-align-items-center toolbar">
+                    <ion-col class="menu-col">
+                        <ion-button fill="clear" class="menu-item" href="/">ВУЗЫ РОССИИ</ion-button>
+                        <ion-button color="medium" fill="clear" class="menu-item" href="/specialties">НАПРАВЛЕНИЯ</ion-button>
+                        <div class="burger">
+                            <ion-menu-button auto-hide="false" id="main-content"></ion-menu-button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-menu side="start" content-id="main-content" class="menu">
+                <ion-content>
+                  <ion-list class="menu-content">
+                    <ion-item id="menu-item" name="info" class="ion-activatable">
+                        <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+                        <ion-label>Основная информация</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                    <ion-item id="menu-item" name="specialties" class="ion-activatable">
+                        <ion-icon name="library-outline" slot="start"></ion-icon>
+                        <ion-label>Специальности</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                    <ion-item id="menu-item" name="news" class="ion-activatable">
+                        <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+                        <ion-label>Новости</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                    <ion-item id="menu-item" name="reviews" class="ion-activatable">
+                        <ion-icon name="heart" slot="start"></ion-icon>
+                        <ion-label>Отзывы</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                    <ion-item id="menu-item" name="location" class="ion-activatable">
+                        <ion-icon name="map-outline" slot="start"></ion-icon>
+                        <ion-label>Местоположение</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                    <ion-item id="menu-item" name="back" class="ion-activatable">
+                        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+                        <ion-label>На главную</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                  </ion-list>
+                </ion-content>
+            </ion-menu>
+            <div id="info">
+                <ion-title color="primary" class="subtitle bold">Основная информация</ion-title>
+                <ion-card class="university-card main-info-card">
+                    <ion-row>
+                        <ion-col class="university-image-col">
+                            <img class="university-image" src="{{ url_for('static', filename='images/universities/' + university.image) }}" alt=""/>
+                        </ion-col>
+                        <ion-col class="university-col" id="content">
+                            <ion-card-header class="university-header">
+                                <ion-card-title>{{ university.name }}</ion-card-title>
+                                <ion-card-subtitle>г. {{ university.city }}</ion-card-subtitle>
+
+                                <div class="university-info-row">
+                                    <ion-row>
+                                        <span class="university-info-row-item">
+                                            <ion-label color="primary">{{ university.placeInRussianTop }}-е место в России</ion-label>
+                                        </span>
+                                    </ion-row>
+                                </div>
+                            </ion-card-header>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+                <ion-card class="university-card university-description-card main-description-card">
+                    <ion-row>
+                        <ion-col class="university-col university-desc-col" id="content">
+                            <ion-card-content class="university-desc content-lg">{{ university.description }}</ion-card-content>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </div>
+            <div id="specialties">
+                <ion-title color="primary" class="subtitle bold">Специальности</ion-title>
+                <ion-toolbar>
+                    <ion-row class="ion-align-items-center toolbar">
+                        <ion-searchbar placeholder="Поиск специальности" id="searchbar"></ion-searchbar>
+                    </ion-row>
+                </ion-toolbar>
+                <ion-list id="card-list">
+                    {% for item in university.specialties %}
+                    <ion-card class="specialties-card" button onclick="window.location.href = '../specialties/{{ item.specialties.id }}'">
+                        <ion-row>
+                            <ion-col class="specialties-card-col specialties-card-image-col">
+                                <img class="specialties-card-image" src="{{ url_for('static', filename='images/specialties/' + item.specialties.image) }}" alt=""/>
+                            </ion-col>
+                            <ion-col class="specialties-card-col" id="content">
+                                <ion-card-header class="specialties-card-header">
+                                    <ion-card-title>{{ item.specialties.name }}</ion-card-title>
+                                    <ion-card-subtitle color="primary">Код направления: {{ item.specialties.code }}</ion-card-subtitle>
+                                    <div class="specialties-info-row">Количество бюджетных мест: {{ item.budgetary_places }}</div>
+                                </ion-card-header>
+                                <ion-card-content class="specialties-card-desc content-lg">{{ item.specialties.description }}</ion-card-content>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                    {% endfor %}
+                </ion-list>
+            </div>
+            <div id="news">
+                <ion-title color="primary" class="subtitle bold">Новости</ion-title>
+                <ion-list id="news-list">
+                    {% for item in news %}
+                    <ion-card class="news-card" button onclick="window.location.href = `{{  item['url'] + item['link'] }}`">
+                        <ion-row>
+                            <ion-col class="news-card-col news-card-image-col">
+                                <img class="news-card-image" src="{{ item['url'] + '/' + item['image'] }}" alt=""/>
+                            </ion-col>
+                            <ion-col class="news-card-col" id="content">
+                                <ion-card-header class="news-card-header">
+                                    <ion-card-title class="news-card-title">{{ item['title'] }}</ion-card-title>
+                                    <ion-card-subtitle color="primary">{{ item['date'] }}</ion-card-subtitle>
+                                </ion-card-header>
+                                <ion-card-content class="news-card-desc content-lg">{{ item['text'] }}</ion-card-content>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                    {% endfor %}
+                </ion-list>
+                {% if news_url != '' %}
+                <ion-button expand="block" class="news-all-button" onclick="window.location.href = '{{ news_url }}'">
+                    Все Новости
+                    <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+                </ion-button>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <ion-button color="success" class="edit-button">
+                    <ion-icon name="pencil-outline" slot="start" class="edit-button-icon"></ion-icon>
+                    <ion-label>
+                        Редактировать
+                    </ion-label>
+                </ion-button>
+                {% endif %}
+            </div>
+            <div id="reviews">
+                <ion-title color="primary" class="subtitle bold">Отзывы</ion-title>
+                <ion-list class="review-list">
+                    <ion-list-header>
+                        {% if avg >= 4 %}
+                        <ion-label class="review-result" color="success">Итоговая оценка
+                        {% elif avg >= 3 %}
+                        <ion-label class="review-result" color="warning">Итоговая оценка
+                        {% else %}
+                        <ion-label class="review-result" color="danger">Итоговая оценка
+                        {% endif %}
+                        {% if (avg|string).split('.')[1] != '0' %}
+                        {{ (avg|string).replace('.', ',') }} из 5</ion-label>
+                        {% else %}
+                        {{ (avg|string).split('.')[0] }} из 5</ion-label>
+                        {% endif %}
+                    </ion-list-header>
+                    {% for item in university.reviews %}
+                    <ion-item>
+                        <ion-avatar slot="start">
+                            <ion-icon class="review-avatar" name="person-circle-outline"></ion-icon>
+                        </ion-avatar>
+                        <ion-label class="review-info">
+                            <h2>{{ item.user_name }}</h2>
+                            <h3>
+                                <span>
+                                    {% for i in range(item.rating|int) %}
+                                    <ion-icon class="rating-stars" name="star"></ion-icon>
+                                    {% endfor %}
+                                    {% if '.' in item.rating|string and (item.rating|string).split('.')[1] != '0' %}
+                                    <ion-icon class="rating-stars" name="star-half-outline"></ion-icon>
+                                    {% endif %}
+                                    {% for i in range((5 - item.rating)|int) %}
+                                    <ion-icon class="rating-stars" name="star-outline"></ion-icon>
+                                    {% endfor %}
+                                </span>
+                            </h3>
+                            <p class="review-text">{{ item.text }}</p>
+                        </ion-label>
+                    </ion-item>
+                    {% endfor %}
+                </ion-list>
+                {% if current_user.is_authenticated %}
+                <ion-button color="success" class="add-button">
+                    <ion-icon name="add-circle-outline" slot="start" class="add-button-icon"></ion-icon>
+                    <ion-label>
+                        Добавить отзыв
+                    </ion-label>
+                </ion-button>
+                {% endif %}
+            </div>
+            <div id="location">
+                <ion-title color="primary" class="subtitle bold">Местоположение</ion-title>
+                <div id="map"></div>
+            </div>
+        </ion-content>
+    </ion-app>
+    <script>
+        async function openMenu() {
+            await menuController.toggle();
+        }
+    </script>
+    <script>
+        var url = '{{ news_data.url }}';
+        var title = '{{ news_data.title }}';
+        var news_url = '{{ news_data.news_url }}'
+        var image = '{{ news_data.image }}';
+        var text = '{{ news_data.text }}';
+        var date = '{{ news_data.date }}';
+    </script>
+    <script src="{{ url_for('static', filename='js/dark_script.js') }}"></script>
+    {% if current_user.is_authenticated %}
+    <script src="{{ url_for('static', filename='js/university_modal.js') }}"></script>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/searchbar_script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+form {
+    width: 70%;
+    position: absolute;
+    left: 15%;
+    top: 15%;
+}
+
+.modal-wrapper {
+    border-radius: 25px !important;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-list {
+    padding: 0;
+}
+
+body.dark .modal-list ion-item, body.dark .box {
+    --background: #121212;
+}
+
+.native-textarea {
+    resize: auto !important;
+    width: 100% !important;
+}
+
+.submit-icon {
+    margin-top: -3.1px;
+}
+
+.submit {
+    font-weight: bold;
+    height: 40px;
+    width: 210px;
+}
+
+.upload-file-button-effect {
+    width: var(--effect-width);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.submit-file-button-effect {
+    width: 210px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.submit-button {
+    background-color: #2dd36f !important;
+    width: 210px;
+}
+
+.box {
+    margin: 20px 20px 20px;
+    height: 45px;
+    text-align: center;
+}
+
+.input-button {
+    display: none;
+}
+
+.input-button + label {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    position: relative;
+    color: white;
+    background-color: #3880ff;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+.input-button:focus + label,
+.input-button.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.input-button + label ion-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    margin-right: 0.45em;
+}
+
+.input-button:focus + label,
+.input-button.has-focus + label,
+.input-button + label:hover {
+    background-color: #3171e0;
+}
+
+@media screen and (max-width: 50em) {
+    .inputfile-6 + label strong {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .modal-wrapper {
+        border-radius: 0 !important;
+    }
+}

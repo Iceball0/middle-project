@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Вузы России</title>
+
+    <!--Meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="Description" content="Добро пожаловать на сайт про Вузы России">
+    
+    <!--Links-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cards_style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal_style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header_style.css') }}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    
+    <!--Scripts-->
+    <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script type="module">
+        import { modalController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+        window.modalController = modalController;
+    </script>
+
+    <!--Icons-->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo128.png') }}" sizes="128x128">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo64.png') }}" sizes="64x64">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo32.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo16.png') }}" sizes="16x16">
+    <link rel="icon" type="img/png" sizes="128x128" href="{{ url_for('static', filename='images/logos/logo128.png') }}">
+    <link rel="icon" type="img/png" sizes="64x64" href="{{ url_for('static', filename='images/logos/logo64.png') }}">
+    <link rel="icon" type="img/png" sizes="32x32" href="{{ url_for('static', filename='images/logos/logo32.png') }}">
+    <link rel="icon" type="img/png" sizes="16x16" href="{{ url_for('static', filename='images/logos/logo16.png') }}">
+</head>
+<body>
+    <ion-app mode="md">
+        <ion-header>
+            <ion-toolbar class="header-toolbar">
+                <ion-row class="ion-align-items-center toolbar">
+                    <ion-col class="menu-col">
+                        <ion-button fill="clear" class="menu-item" name="disabled" href="/">ВУЗЫ РОССИИ</ion-button>
+                        <ion-button color="medium" fill="clear" class="menu-item" href="/specialties">НАПРАВЛЕНИЯ</ion-button>
+                        {% if current_user.is_authenticated %}
+                        <ion-button color="medium" fill="clear" class="exit" href="/logout">Выйти</ion-button>
+                        {% endif %}
+                    </ion-col>
+                </ion-row>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list class="theme-block">
+                <ion-item lines="full">
+                    <ion-icon slot="start" name="moon"></ion-icon>
+                    <ion-label>
+                        Включить тёмную тему
+                    </ion-label>
+                    <ion-toggle id="themeToggle" slot="end"></ion-toggle>
+                </ion-item>
+            </ion-list>
+            <ion-toolbar>
+                <ion-row class="ion-align-items-center toolbar">
+                    <ion-searchbar placeholder="Поиск университетов" id="searchbar"></ion-searchbar>
+                </ion-row>
+            </ion-toolbar>
+            <ion-title color="primary" class="subtitle bold">ВСЕ УНИВЕРСИТЕТЫ</ion-title>
+            <ion-list id="card-list">
+                {% for item in universities %}
+                <ion-card class="card" button onclick="window.location.href = 'universities/{{ item.id }}'">
+                    <ion-row>
+                        <ion-col class="card-col card-image-col">
+                            <img class="card-image" src="{{ url_for('static', filename='images/universities/' + item.image) }}" alt=""/>
+                        </ion-col>
+                        <ion-col class="card-col" id="content">
+                            <ion-card-header class="card-header">
+                                <ion-card-title>{{ item.name }}</ion-card-title>
+                                <ion-card-subtitle>г. {{ item.city }}</ion-card-subtitle>
+
+                                <div class="university-info-row">
+                                    <ion-row>
+                                        <span class="university-info-row-item">
+                                            <ion-label color="primary">{{ item.placeInRussianTop }}-е место в России</ion-label>
+                                        </span>
+                                        
+                                        {% if ratings[loop.index - 1] %}
+                                        <span class="university-rating">
+                                            {% for i in range(ratings[loop.index - 1]|int) %}
+                                            <ion-icon class="university-stars" name="star"></ion-icon>
+                                            {% endfor %}
+                                            {% if '.' in ratings[loop.index - 1]|string and (ratings[loop.index - 1]|string).split('.')[1] != '0' %}
+                                            <ion-icon class="university-stars" name="star-half-outline"></ion-icon>
+                                            {% endif %}
+                                            {% for i in range((5 - ratings[loop.index - 1])|int) %}
+                                            <ion-icon class="university-stars" name="star-outline"></ion-icon>
+                                            {% endfor %}
+                                        </span>
+                                        {% endif %}
+                                        {% if counts[loop.index - 1] % 10 in [5, 6, 7, 8, 9, 0] or counts[loop.index - 1] in [11, 12, 13, 14, 15, 16, 17, 18, 19] %}
+                                        <span class="university-review-count">{{ counts[loop.index - 1] }} отзывов</span>
+                                        {% elif counts[loop.index - 1] % 10 == 1 %}
+                                        <span class="university-review-count">{{ counts[loop.index - 1] }} отзыв</span>
+                                        {% else %}
+                                        <span class="university-review-count">{{ counts[loop.index - 1] }} отзыва</span>
+                                        {% endif %}
+                                    </ion-row>
+                                </div>
+                            </ion-card-header>
+                            <ion-card-content class="card-desc content-lg">{{ item.description }}</ion-card-content>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+                {% if current_user.is_authenticated %}
+                <div class="edit-buttons">
+                    <ion-button color="success" class="edit-button" name="{{ item.id }}">
+                        <ion-icon name="pencil-outline" class="edit-button-icon"></ion-icon>
+                    </ion-button>
+                    <ion-button color="danger" class="delete-button" href="/delete_university/{{ item.id }}">
+                        <ion-icon name="trash-outline" class="delete-button-icon"></ion-icon>
+                    </ion-button>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </ion-list>
+            {% if current_user.is_authenticated %}
+            <ion-button color="success" class="add-button">
+                <ion-icon name="add-circle-outline" slot="start" class="add-button-icon"></ion-icon>
+                <ion-label>
+                    Добавить университет
+                </ion-label>
+            </ion-button>
+            {% endif %}
+        </ion-content>
+    </ion-app>
+    <script>
+        document.getElementsByName("disabled")[0].style.pointerEvents = 'none';
+        var ids = '{{ universities|map(attribute="id")|join("; ") }}'.split('; ');
+        var titles = '{{ universities|map(attribute="name")|join("; ") }}'.split('; ');
+        var cities = '{{ universities|map(attribute="city")|join("; ") }}'.split('; ');
+        var TopsInRussia = '{{ universities|map(attribute="placeInRussianTop")|join("; ") }}'.split('; ');
+        var descriptions = '{{ universities|map(attribute="description")|join("; ") }}'.split('; ');
+    </script>
+    <script src="{{ url_for('static', filename='js/dark_script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/searchbar_script.js') }}"></script>
+    {% if current_user.is_authenticated %}
+    <script src="{{ url_for('static', filename='js/universities_modal.js') }}"></script>
+    {% endif %}
+</body>
+</html>

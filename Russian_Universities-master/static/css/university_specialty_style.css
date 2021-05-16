@@ -1,0 +1,407 @@
+ion-avatar {
+    top: 3px;
+    position: absolute;
+}
+
+ion-title {
+    text-align: center;
+    font-size: 25px;
+}
+
+ion-searchbar {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+body.dark #news-list, body.dark #card-list, body.dark .main-description-card, body.dark .main-info-card {
+    background-color: #121212;
+}
+
+.review-list {
+    margin-top: 15px;
+}
+
+.rating-stars  {
+    color: rgb(255, 180, 0);
+}
+
+.review-text {
+    white-space: normal;
+}
+
+.review-avatar {
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.review-info {
+    margin-left: 56px;
+}
+
+.review-result {
+    font-size: 20px;
+}
+
+.searchbar-input {
+    border-radius: 10px !important;
+}
+
+.specialties-info-row {
+    margin-top: 8px;
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.specialties-card, .news-card {
+    border-radius: 24px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.specialties-card-col, .news-card-col{
+    padding: 0;
+}
+
+body.dark .edit-button-icon, body.dark .add-button-icon, body.dark .edit-button ion-label, body.dark .add-button ion-label {
+    color: white;
+}
+
+.edit-button, .add-button {
+    width: 250px;
+    margin-bottom: 20px;
+    height: 40px;
+    margin-left: 40px;
+    --border-radius: 25px;
+}
+
+.edit-button {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-left: 0;
+}
+
+.add-button {
+    margin-top: 20px;
+}
+
+#specialties, #news, #reviews, #location, #universities {
+    display: none;
+}
+
+.menu-effect {
+    width: 100%;
+}
+
+#menu-item {
+    cursor: pointer;
+}
+
+#map {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+}
+
+.menu {
+    position: fixed;
+}
+
+.menu-content {
+    padding-top: 108px;
+}
+
+.university-description-card, .specialty-description-card {
+    margin-top: 0 !important;
+}
+
+.ion-activatable {
+  position: relative;
+  overflow: hidden;
+}
+
+.burger {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(3px);
+}
+
+.subtitle {
+    margin: 0 !important;
+    margin-top: 40px !important;
+    margin-bottom: 0px !important;
+}
+
+.university-subtitle {
+    margin-top: 80px;
+}
+
+.specialties-subtitle {
+    margin-top: 40px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.button {
+    color: #1200e0;
+}
+
+.university-card, .specialty-card {
+    box-shadow: none;
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+.university-col, .university-image-col, .specialty-col, .specialty-image-col{
+    padding: 0;
+    margin: 0 0 0 30px;
+    border-radius: 24px;
+}
+
+.university-desc-col, .specialty-desc-col {
+    padding-left: 0 !important;
+}
+
+.university-col, .specialty-col {
+    border: 0;
+    padding-left: 10px;
+}
+
+.university-image, .specialties-card-image, .specialty-image {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+}
+
+.news-card-image {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.news-all-button {
+    color: white;
+    --border-radius: 25px;
+    width: 70%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+
+.university-image, .specialty-image {
+    border-radius: 24px;
+}
+
+.university-image-col, .specialties-card-image-col, .specialty-image-col {
+    height: 300px;
+    width: 300px;
+    flex: 0 0 300px;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.news-card-image-col {
+    height: 200px;
+    width: 200px;
+    flex: 0 0 200px;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.university-header, .specialties-card-header, .news-card-header, .specialty-header {
+    padding-bottom: 0px;
+}
+
+.news-card.dark, .specialties-card.dark, #searchbar.dark .searchbar-input {
+    box-shadow: rgb(255 255 255) 0px 1px 5px 0px;
+    animation: pulse 2s infinite;
+}
+
+.university-header, .specialty-header {
+    transform: translateY(50%);
+    height: 50%
+}
+
+.university-info-row {
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.university-desc, .specialties-card-desc, .news-card-desc, .specialty-desc {
+    line-height: 1.7;
+    margin-top: 8px;
+}
+
+.specialties-card-desc, .news-card-desc, .news-card-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    padding-bottom: 0;
+    margin-top: 8px;
+}
+
+.specialties-card-desc {
+    -webkit-line-clamp: 7;
+}
+
+.news-card-desc {
+    -webkit-line-clamp: 3;
+}
+
+.news-card-title {
+    -webkit-line-clamp: 2;
+}
+
+.university-desc, .specialty-desc {
+    line-height: 1.7;
+    margin-top: 8px;
+    padding-left: 0;
+    text-indent: 30px;
+    text-align: justify;
+}
+
+.university-info-row-item {
+    display: inline-block;
+    padding-top: 8px;
+    padding-left: 0;
+    padding-right: 16px;
+}
+
+.content-lg {
+    padding-bottom: 0;
+    margin-bottom: 13px;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: rgb(255 255 255) 0px 1px 5px 0px;
+    }
+    50% {
+        box-shadow: rgb(255 255 255 / 40%) 0px 1px 5px 0px;
+    }
+    100% {
+        box-shadow: rgb(255 255 255) 0px 1px 5px 0px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .specialties-card-desc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        padding-bottom: 0;
+        margin-top: 8px;
+    }
+}
+
+@media screen and (max-width: 805px) {
+    .university-col, .university-image-col, .specialty-col, .specialty-image-col {
+        margin: 0;
+    }
+
+    .university-col, .specialty-col {
+        margin-top: 16px;
+    }
+
+    .university-desc-col, .specialty-desc-col {
+        margin-top: 0;
+    }
+
+    .university-header, .specialty-header {
+        transform: none;
+    }
+
+    .university-desc, .specialty-desc {
+        display: block;
+        padding-top: 0;
+    }
+
+    .university-card, .specialty-card {
+        width: 300px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #map {
+        width: 100%;
+        height: 400px;
+        position: absolute;
+        left: 0;
+        transform: none;
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 614px) {
+    .specialties-card {
+        width: 300px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .edit-button, .add-button {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-left: 0;
+        --border-radius: 25px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .news-card {
+        width: 300px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .news-card-image {
+        height: 300px;
+        width: 300px;
+        object-fit: cover;
+    }
+    .news-card-image-col {
+        height: 300px;
+        width: 300px;
+        flex: 0 0 300px;
+        padding: 0;
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 486px) {
+    .burger {
+        transform: translateY(50%);
+    }
+}

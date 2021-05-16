@@ -1,0 +1,36 @@
+.header-toolbar, .toolbar {
+    height: 100px;
+}
+
+.menu-col {
+    text-align: center;
+}
+
+.exit {
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+}
+
+.logo-col {
+    flex: 0 0 93px;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.logo {
+    height: 93px;
+    width: auto;
+    padding-left: 20%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.menu-item {
+    font-size: 22px;
+    font-weight: bold;
+}

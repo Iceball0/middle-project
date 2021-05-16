@@ -1,0 +1,217 @@
+ion-searchbar {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+body.dark #card-list, body.dark .toolbar-searchbar {
+    background-color: #121212;
+}
+
+body.dark .edit-button-icon, body.dark .delete-button-icon,  body.dark .add-button-icon, body.dark .add-button ion-label {
+    color: white;
+}
+
+.edit-button, .delete-button, .add-button {
+    width: 50px;
+    height: 50px;
+    margin-left: 40px;
+    --border-radius: 25px !important;
+}
+
+.delete-button {
+    margin-left: 15px;
+}
+
+.add-button {
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.university-stars  {
+    color: rgb(255, 180, 0);
+}
+
+.searchbar-input {
+    border-radius: 10px !important;
+}
+
+.subtitle {
+    margin: 40px;
+    margin-top: 40px;
+    margin-bottom: 0px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.button {
+    color: #1200e0;
+}
+
+.card {
+    border-radius: 24px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 300px;
+}
+
+.card.dark, #searchbar.dark .searchbar-input {
+    box-shadow: rgb(255 255 255) 0px 1px 5px 0px;
+    animation: pulse 2s infinite;
+}
+
+.specialties-desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    padding-bottom: 0;
+    margin-top: 8px;
+}
+
+.card-col{
+    padding: 0;
+}
+
+.card-image {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+}
+
+.card-image-col {
+    height: 300px;
+    width: 300px;
+    flex: 0 0 300px;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.card-header {
+    padding-bottom: 0px;
+}
+
+.university-info-row {
+    margin-top: 8px;
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.card-desc, .specialties-desc {
+    line-height: 1.7;
+    margin-top: 8px;
+}
+
+.university-info-row-item, .university-review-count, .university-rating {
+    display: inline-block;
+    padding-top: 8px;
+    padding-left: 0;
+    padding-right: 16px;
+}
+
+.content-lg {
+    padding-bottom: 0;
+    margin-bottom: 13px;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: rgb(255 255 255) 0px 1px 5px 0px;
+    }
+    50% {
+        box-shadow: rgb(255 255 255 / 40%) 0px 1px 5px 0px;
+    }
+    100% {
+        box-shadow: rgb(255 255 255) 0px 1px 5px 0px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .card-desc, .specialties-desc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        padding-bottom: 0;
+        margin-top: 8px;
+    }
+
+    .specialties-desc {
+        -webkit-line-clamp: 6;
+    }
+
+    .card-desc {
+        -webkit-line-clamp: 4;
+    }
+}
+
+@media screen and (max-width: 762px) {
+    .card-desc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        padding-bottom: 0;
+        margin-top: 8px;
+    }
+}
+
+@media screen and (max-width: 614px) {
+    .card-desc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        padding-bottom: 0;
+        margin-top: 8px;
+    }
+
+    .card {
+        width: 300px;
+        height: auto;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .edit-buttons, .add-button {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-left: 0;
+    }
+
+    .edit-buttons {
+        width: 120px;
+    }
+
+    .edit-button {
+        margin: 0;
+        --border-radius: 25px !important;
+    }
+    .delete-button {
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        --border-radius: 25px !important;
+    }
+    .add-button {
+        --border-radius: 25px !important;
+    }
+    
+    ion-title {
+        text-align: center;
+    }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Авторизация</title>
+
+    <!--Meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="Description" content="Авторизация в системе администратора">
+    
+    <!--Links-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_style.css') }}"/>
+    
+    <!--Scripts-->
+    <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+
+    <!--Icons-->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo128.png') }}" sizes="128x128">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo64.png') }}" sizes="64x64">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo32.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo16.png') }}" sizes="16x16">
+    <link rel="icon" type="img/png" sizes="128x128" href="{{ url_for('static', filename='images/logos/logo128.png') }}">
+    <link rel="icon" type="img/png" sizes="64x64" href="{{ url_for('static', filename='images/logos/logo64.png') }}">
+    <link rel="icon" type="img/png" sizes="32x32" href="{{ url_for('static', filename='images/logos/logo32.png') }}">
+    <link rel="icon" type="img/png" sizes="16x16" href="{{ url_for('static', filename='images/logos/logo16.png') }}">
+</head>
+<body>
+    <ion-app mode="md">
+        <ion-content>
+            {% if message %}
+            <div class="banner">
+                {{ message }}
+                <ion-icon slot="end" class="banner-close" name="close-circle-outline"></ion-icon>
+            </div>
+            {% endif %}
+            <div class="bg"></div>
+            <div class="bg-dark"></div>
+            <ion-card>
+                <ion-card-header>
+                    <ion-title color="primary">Авторизация</ion-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <form action="" method="POST" class="form_input">
+                        <ion-list>
+                            <ion-item>
+                                <ion-label position="floating">Логин</ion-label>
+                                <ion-input autocomplete="off" type="text" name="login" required />
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating">Пароль</ion-label>
+                                <ion-input autocomplete="one-time-code" type="password" name="password" required />
+                            </ion-item>
+                        </ion-list>
+                        <div class="checkbox">
+                            <ion-checkbox class="check" id="remember" name="remember"></ion-checkbox>
+                            <label for="remember">Запомнить меня</label>  
+                        </div>
+                        <div class="but">
+                            <ion-button color="success" type="submit" class="confirm" id="do_login">Войти</ion-button>
+                        </div>  
+                    </form>
+                </ion-card-content>
+            </ion-card>
+        </ion-content>
+    </ion-app>
+    <script>
+        var btnClose = document.querySelector(".banner-close"); 
+        if (btnClose) {
+            btnClose.addEventListener("click", function (closeEvt) { 
+                var banner = document.querySelector(".banner"); 
+                banner.parentNode.removeChild(banner); 
+            }); 
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/dark_script.js') }}"></script>
+</body>
+</html>

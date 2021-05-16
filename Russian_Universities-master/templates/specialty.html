@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+    
+<head>
+    <title>{{ specialty.name }}</title>
+
+    <!--Meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="Description" content="Основная информация о специальности {{ specialty.name }}">
+    
+    <!--Links-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cards_style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header_style.css') }}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/university_specialty_style.css') }}"/>
+    
+    <!--Scripts-->
+    <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/university_specialty_script.js') }}"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script type="module">
+        import { menuController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+        window.menuController = menuController;
+    </script>
+
+    <!--Icons-->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo128.png') }}" sizes="128x128">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo64.png') }}" sizes="64x64">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo32.png') }}" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logos/logo16.png') }}" sizes="16x16">
+    <link rel="icon" type="img/png" sizes="128x128" href="{{ url_for('static', filename='images/logos/logo128.png') }}">
+    <link rel="icon" type="img/png" sizes="64x64" href="{{ url_for('static', filename='images/logos/logo64.png') }}">
+    <link rel="icon" type="img/png" sizes="32x32" href="{{ url_for('static', filename='images/logos/logo32.png') }}">
+    <link rel="icon" type="img/png" sizes="16x16" href="{{ url_for('static', filename='images/logos/logo16.png') }}">
+</head>
+<body>
+    <ion-app mode="md">
+        <ion-header>
+            <ion-toolbar style="padding-top: 0;" class="header-toolbar">
+                <ion-row class="ion-align-items-center toolbar">
+                    <ion-col class="menu-col">
+                        <ion-button color="medium" fill="clear" class="menu-item" href="/">ВУЗЫ РОССИИ</ion-button>
+                        <ion-button fill="clear" class="menu-item" href="/specialties">НАПРАВЛЕНИЯ</ion-button>
+                        <div class="burger">
+                            <ion-menu-button auto-hide="false" id="main-content"></ion-menu-button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-menu side="start" content-id="main-content" class="menu">
+                <ion-content>
+                  <ion-list class="menu-content">
+                    <ion-item id="menu-item" name="info" class="ion-activatable">
+                        <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+                        <ion-label>Основная информация</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                    <ion-item id="menu-item" name="universities" class="ion-activatable">
+                        <ion-icon name="school-outline" slot="start"></ion-icon>
+                        <ion-label>Университеты</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                    <ion-item id="menu-item" name="back" class="ion-activatable">
+                        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+                        <ion-label>На главную</ion-label>
+                        <ion-ripple-effect class="menu-effect" slot="start"></ion-ripple-effect>
+                    </ion-item>
+                  </ion-list>
+                </ion-content>
+            </ion-menu>
+            <div id="info">
+                <ion-title color="primary" class="subtitle bold">Основная информация</ion-title>
+                <ion-card class="specialty-card main-info-card">
+                    <ion-row>
+                        <ion-col class="specialty-image-col specialty-image-col">
+                            <img class="specialty-image" src="{{ url_for('static', filename='images/specialties/' + specialty.image) }}" alt=""/>
+                        </ion-col>
+                        <ion-col class="specialty-col" id="content">
+                            <ion-card-header class="specialty-header">
+                                <ion-card-title>{{ specialty.name }}</ion-card-title>
+                                <ion-card-subtitle>Код направления: {{ specialty.code }}</ion-card-subtitle>
+                            </ion-card-header>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+                <ion-card class="specialty-card specialty-description-card main-description-card">
+                    <ion-row>
+                        <ion-col class="specialty-col specialty-desc-col" id="content">
+                            <ion-card-content class="specialty-desc content-lg">{{ specialty.description }}</ion-card-content>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </div>
+            <div id="universities">
+                <ion-title color="primary" class="subtitle bold">Университеты</ion-title>
+                <ion-toolbar>
+                    <ion-row class="ion-align-items-center toolbar">
+                        <ion-searchbar placeholder="Поиск университетов" id="searchbar"></ion-searchbar>
+                    </ion-row>
+                </ion-toolbar>
+                <ion-list id="card-list">
+                    {% for item in specialty.universities %}
+                    <ion-card class="card" button onclick="window.location.href = '../universities/{{ item.universities.id }}'">
+                        <ion-row>
+                            <ion-col class="card-col card-image-col">
+                                <img class="card-image" src="{{ url_for('static', filename='images/universities/' + item.universities.image) }}" alt=""/>
+                            </ion-col>
+                            <ion-col class="card-col" id="content">
+                                <ion-card-header class="card-header">
+                                    <ion-card-title>{{ item.universities.name }}</ion-card-title>
+                                    <ion-card-subtitle color="primary">г. {{ item.universities.city }}</ion-card-subtitle>
+                                    <div class="university-info-row">Количество бюджетных мест: {{ item.budgetary_places }}</div>
+                                </ion-card-header>
+                                <ion-card-content class="card-desc content-lg">{{ item.universities.description }}</ion-card-content>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                    {% endfor %}
+                </ion-list>
+            </div>
+        </ion-content>
+    </ion-app>
+    <script>
+        async function openMenu() {
+            await menuController.toggle();
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/dark_script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/searchbar_script.js') }}"></script>
+</body>
+</html>
